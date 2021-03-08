@@ -1,0 +1,14 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "pwa-node",
+			"request": "attach",
+      "restart": true,
+			"name": "Debug",
+			"skipFiles": [
+				"<node_internals>/**"
+			]
+		}
+	]
+}
