@@ -1,5 +1,6 @@
 import { getCustomRepository } from 'typeorm';
 
+import EtherealMail from '@config/mail/EtherealMail';
 import AppError from '@shared/errors/AppError';
 import UserTokensRepository from '../typeorm/repositories/UserTokensRepository';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
@@ -19,13 +20,22 @@ class SendForgotPasswordEmailService {
       throw new AppError('User does not exists.');
     }
 
-    const userToken = userTokensRepository.generate(user.id);
+    const { token } = await userTokensRepository.generate(user.id);
 
-    if (!user) {
-      throw new AppError('User does not exists.');
-    }
-
-    return userToken;
+    await EtherealMail.sendMail({
+      to: {
+        name: user.name,
+        email: user.email
+      },
+      subject: '[API Vendas] Recuperação de senha',
+      templateData: {
+        template: `Olá {{name}}: {{token}}`,
+        variables: {
+          name: user.name,
+          token
+        }
+      }
+    });
   }
 }
 
