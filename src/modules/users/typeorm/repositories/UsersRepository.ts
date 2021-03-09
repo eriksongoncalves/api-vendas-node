@@ -3,6 +3,16 @@ import User from '../entities/User';
 
 @EntityRepository(User)
 class UsersRepository extends Repository<User> {
+  async findById(id: string) {
+    const user = this.findOne({
+      where: {
+        id
+      }
+    });
+
+    return user;
+  }
+
   async findByName(name: string) {
     const user = this.findOne({
       where: {
