@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import { errors } from 'celebrate';
+import { pagination } from 'typeorm-pagination';
 
 import 'express-async-errors';
 import cors from 'cors';
@@ -12,6 +13,7 @@ import routes from './routes';
 
 const app = express();
 
+app.use(pagination);
 app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.directory));
