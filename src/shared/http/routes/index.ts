@@ -5,6 +5,7 @@ import usersRouter from '@modules/users/routes/users.routes';
 import sessionsRouter from '@modules/users/routes/sessions.routes';
 import passwordRouter from '@modules/users/routes/password.routes';
 import profileRouter from '@modules/users/routes/profile.routes';
+import customersRouter from '@modules/customers/routes/customer.routes';
 
 const router = Router();
 
@@ -13,5 +14,6 @@ router.use('/users', usersRouter);
 router.use('/sessions', sessionsRouter);
 router.use('/password', passwordRouter);
 router.use('/profile', profileRouter);
+router.use('/customers', customersRouter);
 
 export default router;
