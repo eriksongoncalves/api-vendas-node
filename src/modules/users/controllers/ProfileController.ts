@@ -13,7 +13,7 @@ class ProfileController {
     return res.json(user);
   }
 
-  async create(req: Request, res: Response) {
+  async update(req: Request, res: Response) {
     const { name, email, password, old_password } = req.body;
     const user_id = req.user.id;
 
